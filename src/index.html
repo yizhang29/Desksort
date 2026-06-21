@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeskSort</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i class="ti ti-layout-columns"></i></div>
+      <div class="brand-meta">
+        <span class="brand-name">DeskSort</span>
+        <span class="brand-sub">Desktop organizer</span>
+      </div>
+    </div>
+
+    <nav class="nav-top">
+      <a class="nav-item active" href="#" data-page="dashboard">
+        <i class="ti ti-layout-dashboard"></i><span>Dashboard</span>
+      </a>
+      <a class="nav-item" href="#" data-page="folders">
+        <i class="ti ti-folder"></i><span>Folders</span>
+      </a>
+      <a class="nav-item" href="#" data-page="rules">
+        <i class="ti ti-filter"></i><span>Rules</span>
+      </a>
+      <a class="nav-item" href="#" data-page="history">
+        <i class="ti ti-history"></i><span>History</span>
+      </a>
+      <a class="nav-item" href="#" data-page="schedule">
+        <i class="ti ti-clock"></i><span>Schedule</span>
+      </a>
+    </nav>
+
+    <nav class="nav-bottom">
+      <a class="nav-item" href="#" data-page="settings">
+        <i class="ti ti-settings"></i><span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ═══════════════ MAIN PANEL ═══════════════ -->
+  <div id="main">
+
+    <!-- Top bar -->
+    <div id="topbar">
+      <span id="page-title">Dashboard</span>
+      <div class="topbar-badge">
+        <i class="ti ti-brand-windows"></i>
+        <span>Windows 11 · C:/Users/Yi/Desktop</span>
+      </div>
+    </div>
+
+    <!-- ─── Content ─── -->
+    <div id="content">
+
+      <!-- ══════════ DASHBOARD PAGE ══════════ -->
+      <div class="page active" id="page-dashboard">
+
+          <!-- Row 1: metric cards -->
+          <div class="metric-grid">
+            <div class="metric-card">
+              <div class="metric-label">Loose files</div>
+              <div class="metric-value">47</div>
+              <div class="metric-sub">on desktop</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Clutter score</div>
+              <div class="metric-value clutter">68</div>
+              <div class="metric-sub">out of 100</div>
+              <div class="score-track"><div class="score-fill" style="width:68%"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Last organized</div>
+              <div class="metric-value metric-value--md">3 days ago</div>
+              <div class="metric-sub">Jun 17, 2026</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Auto-schedule</div>
+              <div class="metric-value metric-value--md">Weekly</div>
+              <div class="metric-sub">Every Sunday</div>
+            </div>
+          </div>
+
+          <!-- Row 2: folder preview -->
+          <p class="section-label">Folder preview</p>
+          <div class="folder-grid">
+            <div class="folder-card">
+              <i class="ti ti-photo folder-icon" style="color:#185FA5"></i>
+              <div class="folder-card-name">Images</div>
+              <div class="folder-card-count">14 files</div>
+            </div>
+            <div class="folder-card">
+              <i class="ti ti-file-text folder-icon" style="color:#3B6D11"></i>
+              <div class="folder-card-name">Documents</div>
+              <div class="folder-card-count">9 files</div>
+            </div>
+            <div class="folder-card">
+              <i class="ti ti-package folder-icon" style="color:#854F0B"></i>
+              <div class="folder-card-name">Archives</div>
+              <div class="folder-card-count">6 files</div>
+            </div>
+            <div class="folder-card">
+              <i class="ti ti-device-desktop-code folder-icon" style="color:#534AB7"></i>
+              <div class="folder-card-name">Code</div>
+              <div class="folder-card-count">11 files</div>
+            </div>
+            <div class="folder-card">
+              <i class="ti ti-box folder-icon" style="color:#888780"></i>
+              <div class="folder-card-name">Other</div>
+              <div class="folder-card-count">7 files</div>
+            </div>
+          </div>
+
+          <!-- Row 3: active rules -->
+          <p class="section-label">Active rules</p>
+          <div class="rules-list">
+            <div class="rule-item">
+              <span class="pill pill--ext">.jpg .png .gif</span>
+              <i class="ti ti-arrow-right rule-arrow"></i>
+              <span class="rule-dest">Move to <strong>Images/</strong></span>
+              <span class="rule-count">14 files</span>
+            </div>
+            <div class="rule-item">
+              <span class="pill pill--doc">.pdf .docx .xlsx</span>
+              <i class="ti ti-arrow-right rule-arrow"></i>
+              <span class="rule-dest">Move to <strong>Documents/</strong></span>
+              <span class="rule-count">9 files</span>
+            </div>
+            <div class="rule-item">
+              <span class="pill pill--kw">keyword: invoice</span>
+              <i class="ti ti-arrow-right rule-arrow"></i>
+              <span class="rule-dest">Move to <strong>Finance/</strong></span>
+              <span class="rule-count">3 files</span>
+            </div>
+            <div class="rule-item rule-item--add" id="dash-add-rule">
+              <i class="ti ti-plus"></i>
+              <span>Add rule…</span>
+            </div>
+          </div>
+
+      </div><!-- /page-dashboard -->
+
+
+      <!-- ══════════ FOLDERS PAGE ══════════ -->
+      <div class="page" id="page-folders">
+        <div class="page-inner">
+          <div class="folder-grid folder-grid--lg">
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-photo folder-icon folder-icon--lg" style="color:#185FA5"></i>
+              <div class="folder-card-name">Images</div>
+              <div class="folder-card-count">14 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-file-text folder-icon folder-icon--lg" style="color:#3B6D11"></i>
+              <div class="folder-card-name">Documents</div>
+              <div class="folder-card-count">9 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-package folder-icon folder-icon--lg" style="color:#854F0B"></i>
+              <div class="folder-card-name">Archives</div>
+              <div class="folder-card-count">6 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-device-desktop-code folder-icon folder-icon--lg" style="color:#534AB7"></i>
+              <div class="folder-card-name">Code</div>
+              <div class="folder-card-count">11 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-video folder-icon folder-icon--lg" style="color:#A35200"></i>
+              <div class="folder-card-name">Videos</div>
+              <div class="folder-card-count">4 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+            <div class="folder-card folder-card--lg">
+              <i class="ti ti-box folder-icon folder-icon--lg" style="color:#888780"></i>
+              <div class="folder-card-name">Other</div>
+              <div class="folder-card-count">7 files</div>
+              <div class="folder-hover-label">Open folder</div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /page-folders -->
+
+
+      <!-- ══════════ RULES PAGE ══════════ -->
+      <div class="page" id="page-rules">
+        <div class="page-inner">
+          <div class="page-toolbar">
+            <span class="toolbar-count">28 rules active</span>
+            <button class="btn-primary btn-sm" id="rules-add-btn">
+              <i class="ti ti-plus"></i> Add new rule
+            </button>
+          </div>
+
+          <!-- inline add form -->
+          <div class="inline-form hidden" id="rules-inline-form">
+            <div class="inline-form-row">
+              <div class="seg-ctrl seg-ctrl--sm" id="rules-type-seg">
+                <button class="seg-btn active" data-val="extension">Extension</button>
+                <button class="seg-btn" data-val="keyword">Keyword</button>
+              </div>
+              <input class="form-input" id="rules-val-input" placeholder=".psd or invoice" />
+              <input class="form-input" id="rules-folder-input" placeholder="Folder name" />
+              <button class="btn-primary btn-sm" id="rules-save-btn">Save</button>
+              <button class="btn-ghost btn-sm" id="rules-cancel-btn">Cancel</button>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Extension / Keyword</th>
+                <th>Target folder</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill pill--ext">ext</span></td>
+                <td><code>.jpg .jpeg .png .gif .webp</code></td>
+                <td>Images/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="pill pill--doc">ext</span></td>
+                <td><code>.pdf .docx .doc .xlsx .xls .txt</code></td>
+                <td>Documents/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="pill pill--ext">ext</span></td>
+                <td><code>.zip .rar .7z .tar .gz</code></td>
+                <td>Archives/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="pill pill--ext">ext</span></td>
+                <td><code>.js .ts .py .rs .html .css .json</code></td>
+                <td>Code/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="pill pill--ext">ext</span></td>
+                <td><code>.mp4 .mov .avi .mkv</code></td>
+                <td>Videos/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td><span class="pill pill--kw">keyword</span></td>
+                <td><code>invoice</code></td>
+                <td>Finance/</td>
+                <td class="td-actions">
+                  <button class="icon-btn"><i class="ti ti-pencil"></i></button>
+                  <button class="icon-btn icon-btn--danger"><i class="ti ti-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div><!-- /page-rules -->
+
+
+      <!-- ══════════ HISTORY PAGE ══════════ -->
+      <div class="page" id="page-history">
+        <div class="page-inner">
+
+          <div class="history-card">
+            <div class="history-header">
+              <div>
+                <div class="history-date">Jun 17, 2026 · 2:34 PM</div>
+                <div class="history-meta">47 files moved</div>
+              </div>
+              <button class="btn-danger-outline btn-sm">
+                <i class="ti ti-arrow-back-up"></i> Undo this session
+              </button>
+            </div>
+            <details class="history-details">
+              <summary>Show file list</summary>
+              <div class="history-moves">
+                <div class="move-row"><span class="move-from">photo_001.jpg</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Images/photo_001.jpg</span></div>
+                <div class="move-row"><span class="move-from">budget_2026.xlsx</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Documents/budget_2026.xlsx</span></div>
+                <div class="move-row"><span class="move-from">invoice_march.pdf</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Finance/invoice_march.pdf</span></div>
+                <div class="move-row"><span class="move-from">project.zip</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Archives/project.zip</span></div>
+                <div class="move-row move-row--more">+ 43 more files</div>
+              </div>
+            </details>
+          </div>
+
+          <div class="history-card">
+            <div class="history-header">
+              <div>
+                <div class="history-date">Jun 10, 2026 · 9:12 AM</div>
+                <div class="history-meta">23 files moved</div>
+              </div>
+              <button class="btn-danger-outline btn-sm">
+                <i class="ti ti-arrow-back-up"></i> Undo this session
+              </button>
+            </div>
+            <details class="history-details">
+              <summary>Show file list</summary>
+              <div class="history-moves">
+                <div class="move-row"><span class="move-from">screenshot.png</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Images/screenshot.png</span></div>
+                <div class="move-row"><span class="move-from">notes.txt</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Documents/notes.txt</span></div>
+                <div class="move-row move-row--more">+ 21 more files</div>
+              </div>
+            </details>
+          </div>
+
+          <div class="history-card">
+            <div class="history-header">
+              <div>
+                <div class="history-date">Jun 3, 2026 · 11:45 AM</div>
+                <div class="history-meta">8 files moved</div>
+              </div>
+              <button class="btn-danger-outline btn-sm">
+                <i class="ti ti-arrow-back-up"></i> Undo this session
+              </button>
+            </div>
+            <details class="history-details">
+              <summary>Show file list</summary>
+              <div class="history-moves">
+                <div class="move-row"><span class="move-from">demo.mp4</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Videos/demo.mp4</span></div>
+                <div class="move-row"><span class="move-from">archive.tar.gz</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Archives/archive.tar.gz</span></div>
+                <div class="move-row move-row--more">+ 6 more files</div>
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div><!-- /page-history -->
+
+
+      <!-- ══════════ SCHEDULE PAGE ══════════ -->
+      <div class="page" id="page-schedule">
+        <div class="page-inner page-inner--narrow">
+
+          <div class="settings-section">
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Enable auto-organize</div>
+                <div class="setting-desc">Automatically move files on a schedule</div>
+              </div>
+              <button class="toggle on" id="schedule-toggle" aria-pressed="true">
+                <span class="toggle-knob"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="setting-row">
+              <div class="setting-label">Frequency</div>
+              <div class="seg-ctrl" id="schedule-freq-seg">
+                <button class="seg-btn" data-val="daily">Daily</button>
+                <button class="seg-btn active" data-val="weekly">Weekly</button>
+                <button class="seg-btn" data-val="login">On login</button>
+              </div>
+            </div>
+
+            <div class="setting-row" id="day-picker-row">
+              <div class="setting-label">Day</div>
+              <div class="day-pills">
+                <button class="day-pill">Mon</button>
+                <button class="day-pill">Tue</button>
+                <button class="day-pill">Wed</button>
+                <button class="day-pill">Thu</button>
+                <button class="day-pill">Fri</button>
+                <button class="day-pill">Sat</button>
+                <button class="day-pill active">Sun</button>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-label">Time</div>
+              <select class="form-select">
+                <option>6:00 AM</option>
+                <option>7:00 AM</option>
+                <option>8:00 AM</option>
+                <option selected>9:00 AM</option>
+                <option>10:00 AM</option>
+                <option>12:00 PM</option>
+                <option>6:00 PM</option>
+              </select>
+            </div>
+
+            <div class="setting-row">
+              <div class="setting-label">Next scheduled run</div>
+              <div class="readonly-field">Sunday, Jun 28, 2026 at 9:00 AM</div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /page-schedule -->
+
+
+      <!-- ══════════ SETTINGS PAGE ══════════ -->
+      <div class="page" id="page-settings">
+        <div class="page-inner page-inner--narrow">
+
+          <div class="settings-section">
+            <div class="settings-section-title">Desktop path</div>
+            <div class="input-row">
+              <input class="form-input form-input--grow" value="C:/Users/Yi/Desktop" id="desktop-path-input" />
+              <button class="btn-outline btn-sm">Browse</button>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-section-title">File filters</div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Skip shortcut files</div>
+                <div class="setting-desc">Ignore .lnk files on the desktop</div>
+              </div>
+              <button class="toggle on" aria-pressed="true"><span class="toggle-knob"></span></button>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Skip hidden files</div>
+                <div class="setting-desc">Ignore files starting with a dot</div>
+              </div>
+              <button class="toggle on" aria-pressed="true"><span class="toggle-knob"></span></button>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Enable undo log</div>
+                <div class="setting-desc">Save a log of moves for each session</div>
+              </div>
+              <button class="toggle on" aria-pressed="true"><span class="toggle-knob"></span></button>
+            </div>
+            <div class="setting-row">
+              <div>
+                <div class="setting-label">Launch on startup</div>
+                <div class="setting-desc">Start DeskSort when Windows starts</div>
+              </div>
+              <button class="toggle" aria-pressed="false"><span class="toggle-knob"></span></button>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div class="settings-section-title">Appearance</div>
+            <div class="setting-row">
+              <div class="setting-label">Theme</div>
+              <div class="seg-ctrl" id="theme-seg">
+                <button class="seg-btn active" data-val="system">System</button>
+                <button class="seg-btn" data-val="light">Light</button>
+                <button class="seg-btn" data-val="dark">Dark</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section settings-section--danger">
+            <div class="settings-section-title">Danger zone</div>
+            <div class="danger-row">
+              <div>
+                <div class="setting-label">Clear all history</div>
+                <div class="setting-desc">Permanently delete all organize session logs</div>
+              </div>
+              <button class="btn-danger-outline btn-sm">Clear history</button>
+            </div>
+            <div class="danger-row">
+              <div>
+                <div class="setting-label">Reset all rules to default</div>
+                <div class="setting-desc">Remove custom rules and restore built-in defaults</div>
+              </div>
+              <button class="btn-danger-outline btn-sm">Reset rules</button>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /page-settings -->
+
+    </div><!-- /content -->
+
+    <!-- Bottom action bar -->
+    <div id="action-bar">
+      <div class="action-left">
+        <button class="btn-primary" id="btn-organize">
+          <i class="ti ti-player-play"></i> Organize now
+        </button>
+        <button class="btn-outline" id="btn-dryrun">Dry run</button>
+      </div>
+      <div class="action-right">
+        <span class="toggle-label">Undo log</span>
+        <button class="toggle on" id="undo-toggle" aria-pressed="true">
+          <span class="toggle-knob"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dry run overlay (inside #main, not fixed) -->
+    <div id="dryrun-overlay" class="overlay hidden">
+      <div class="overlay-panel">
+        <div class="overlay-header">
+          <span>Dry run — planned moves</span>
+          <button class="icon-btn" id="dryrun-close"><i class="ti ti-x"></i></button>
+        </div>
+        <div class="overlay-body">
+          <div class="move-row"><span class="move-from">photo_001.jpg</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Images/</span></div>
+          <div class="move-row"><span class="move-from">budget_2026.xlsx</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Documents/</span></div>
+          <div class="move-row"><span class="move-from">invoice_march.pdf</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Finance/</span></div>
+          <div class="move-row"><span class="move-from">project.zip</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Archives/</span></div>
+          <div class="move-row"><span class="move-from">main.py</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Code/</span></div>
+          <div class="move-row"><span class="move-from">demo.mp4</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Videos/</span></div>
+          <div class="move-row"><span class="move-from">notes.txt</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Documents/</span></div>
+          <div class="move-row"><span class="move-from">screenshot.png</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Images/</span></div>
+          <div class="move-row"><span class="move-from">archive.tar.gz</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Archives/</span></div>
+          <div class="move-row"><span class="move-from">config.json</span><i class="ti ti-arrow-right move-sep"></i><span class="move-to">Code/</span></div>
+          <div class="overlay-footer-note">47 files total · 0 already organized</div>
+        </div>
+        <div class="overlay-footer">
+          <button class="btn-primary" id="dryrun-run">Run organize now</button>
+          <button class="btn-ghost" id="dryrun-dismiss">Dismiss</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- Toast notification -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="main.js"></script>
+</body>
+</html>
