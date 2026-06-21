@@ -25,14 +25,18 @@ brew install --cask desksort
 1. Go to [Releases](https://github.com/yizhang29/Desksort/releases/latest)
 2. Download `DeskSort_0.1.0_universal.dmg`
 3. Open the file and drag DeskSort into Applications
-4. First launch: right-click the app → **Open** (bypasses the macOS security warning)
+4. First launch: right-click the app → **Open** → click **Open** again in the dialog
+
+> **Why does macOS block it?** macOS shows a warning because DeskSort is not yet notarized with Apple. Right-clicking and choosing Open is the standard way to run trusted apps from independent developers. You only need to do this once.
 
 ### Windows
 
 1. Go to [Releases](https://github.com/yizhang29/Desksort/releases/latest)
 2. Download `DeskSort_0.1.0_x64-setup.exe`
-3. Run the installer and follow the prompts
-4. Find DeskSort in your Start Menu
+3. Run the installer — if you see a **"Windows protected your PC"** warning, click **More info → Run anyway**
+4. Follow the prompts and find DeskSort in your Start Menu
+
+> **Why does Windows block it?** Windows SmartScreen shows this warning for any new app that doesn't yet have a code signing certificate. DeskSort is safe to install — click "More info" then "Run anyway" to proceed. You only need to do this once.
 
 ---
 
